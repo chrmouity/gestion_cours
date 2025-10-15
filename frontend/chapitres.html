@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapîtres</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="titre-matiere">Chapîtres</h1>
+    <nav><a href="index.html">&larr; Retour aux matières</a></nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Ajouter un chapitre</h2>
+      <form id="form-chapitre">
+        <input type="text" id="nom_chapitre" placeholder="Nom du chapitre" required>
+        <input type="file" id="fichier" accept=".jpg,.jpeg,.png,.gif,.webp" required />
+        <button>Ajouter</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Liste des chapitres</h2>
+      <ul id="liste-chapitres" class="list"></ul>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const id_matiere = Number(params.get('id'));
+    const nom = params.get('nom') || '';
+    document.getElementById('titre-matiere').textContent = `Matière : ${nom}`;
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
