@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion des cours - Matières</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gestion des cours</h1>
+    <p>Liste des matières</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Ajouter une matière</h2>
+      <form id="form-matiere">
+        <input type="text" id="nom_matiere" placeholder="Nom de la matière" required>
+        <button>Ajouter</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Matières</h2>
+      <ul id="liste-matieres" class="list"></ul>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
