@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chapîtres</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapitres</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1 id="titre-matiere">Chapîtres</h1>
-    <nav><a href="index.html">&larr; Retour aux matières</a></nav>
+    <h1 id="titre-matiere">Chapitres</h1>
+    <!-- lien retour fiable -->
+    <nav><a href="index.html" id="lien-retour">&larr; Retour aux matières</a></nav>
   </header>
 
   <main>
+    <!-- Formulaire d'ajout de chapitre (image optionnelle) -->
     <section class="card">
       <h2>Ajouter un chapitre</h2>
       <form id="form-chapitre">
-        <input type="text" id="nom_chapitre" placeholder="Nom du chapitre" required>
-        <input type="file" id="fichier" accept=".jpg,.jpeg,.png,.gif,.webp" required />
-        <button>Ajouter</button>
+        <input
+          type="text"
+          id="nom_chapitre"
+          name="NOM_CHAPITRE"
+          placeholder="Nom du chapitre"
+          aria-label="Nom du chapitre"
+          required
+        />
+        <input
+          type="file"
+          id="fichier"
+          name="FICHIER"
+          accept=".jpg,.jpeg,.png,.gif,.webp"
+          aria-label="Image du chapitre (optionnelle)"
+        />
+        <button type="submit">Ajouter</button>
       </form>
     </section>
 
@@ -29,9 +44,9 @@
   </main>
 
   <script>
-    const params = new URLSearchParams(location.search);
-    const id_matiere = Number(params.get('id'));
-    const nom = params.get('nom') || '';
+    // Affiche le nom de la matière dans le titre
+    const p = new URLSearchParams(location.search);
+    const nom = p.get('nom') || '';
     document.getElementById('titre-matiere').textContent = `Matière : ${nom}`;
   </script>
   <script src="script.js"></script>

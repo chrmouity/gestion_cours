@@ -27,13 +27,16 @@ if (!in_array($ext, $allowed, true)) {
 
 $basename = preg_replace('/[^a-zA-Z0-9_-]+/', '-', pathinfo($_FILES['fichier']['name'], PATHINFO_FILENAME));
 $filename = $basename . '-' . date('YmdHis') . '.' . $ext;
-$target = __DIR__ . '/uploads/' . $filename;
 
-if (!is_dir(__DIR__ . '/uploads')) { mkdir(__DIR__ . '/uploads', 0775, true); }
+$uploadDir = __DIR__ . '/uploads';
+if (!is_dir($uploadDir)) { mkdir($uploadDir, 0775, true); }
 
-if (!move_uploaded_file($_FILES['fichier']['tmp_name'], $target)) {
-    json_error('Impossible d'enregistrer le fichier', 500);
+$targetAbs = $uploadDir . '/' . $filename;
+if (!move_uploaded_file($_FILES['fichier']['tmp_name'], $targetAbs)) {
+    json_error('Impossible d\'enregistrer le fichier', 500);
 }
 
-$relativeUrl = 'backend/uploads/' . $filename; // depuis la racine projet quand servi ensemble
+// Chemin relatif depuis la racine du site (pour <img src="../..."> côté front)
+$relativeUrl = 'backend/uploads/' . $filename;
+
 json_response(['ok' => true, 'chemin_fichier' => $relativeUrl, 'nom' => $filename]);
